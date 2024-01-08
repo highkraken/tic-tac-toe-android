@@ -1,6 +1,8 @@
 # Tic Tac Toe: Local Multiplayer Fun
 
-<img src="/Screenshots/gameplay.png" alt="Gameplay Screenshot" width="200"/>
+<p align="center">
+    <img src="/Screenshots/gameplay.png" alt="Gameplay Screenshot" width="200"/>
+</p>
 
 ## About
 Embark on a nostalgic journey with Tic Tac Toe, an engaging two-player local game designed for Android devices. Challenge your friends to intense battles on the same device, taking turns strategically placing Xs and Os on the grid. The app ensures a seamless and interactive experience, automatically declaring a winner when three in a row is achieved. Enjoy endless rematches with the simple restart feature, adding a touch of competition to every round. Tic Tac Toe combines classic gameplay with modern convenience, promising hours of local multiplayer fun.
