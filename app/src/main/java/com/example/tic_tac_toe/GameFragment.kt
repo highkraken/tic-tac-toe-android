@@ -3,13 +3,11 @@ package com.example.tic_tac_toe
 import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -41,7 +39,7 @@ class GameFragment : Fragment() {
         )
         val args = GameFragmentArgs.fromBundle(requireArguments())
         (activity as AppCompatActivity).supportActionBar?.title =
-            "First to score ${args.numRounds / 2 + 1} wins"
+            "First to score ${args.numRounds} wins"
         game = Game(p1Name = args.p1Name, p2Name = args.p2Name, rounds = args.numRounds)
         binding.gameInst = this
         val circleDrawable = R.drawable.circle
@@ -85,7 +83,6 @@ class GameFragment : Fragment() {
                             binding.p2Display.letterSpacing = 0.1f
                         }
                         if (checkEndGame(args.p1Name, args.p2Name)) endGameTriggered = true
-                        Log.e("TRACKBOARD", trackOfBoard.toString())
                     }
                 }
             }
@@ -138,7 +135,6 @@ class GameFragment : Fragment() {
                 if (trackOfBoard[row][ind] == '.')  trackOfBoard[row][ind] = '#'
             }
         }
-        Log.e("GAMEHAIJI", game.toString())
         if (winner == "p1") {
             game.p1Score = "${game.p1Score.toInt() + 1}"
             binding.p1Score.text = game.p1Score
@@ -151,7 +147,7 @@ class GameFragment : Fragment() {
             "p2" -> game.p2Name
             else -> "none"
         }
-        showDialog(winnerName, game.p1Score.toInt() > game.rounds / 2 || game.p2Score.toInt() > game.rounds / 2)
+        showDialog(winnerName, game.p1Score.toInt() == game.rounds || game.p2Score.toInt() == game.rounds)
         return true
     }
 
@@ -171,14 +167,15 @@ class GameFragment : Fragment() {
     private fun showDialog(winner: String, gameOver: Boolean=false)  {
         val builder = AlertDialog.Builder(activity as AppCompatActivity)
         val title = if (winner == "none") "Round drawn" else "Round Won"
-        val message = if (winner == "none") "Ah! No one won the round as it resulted in a draw." else "Hurray! $winner has won the round"
+        val message = if (winner == "none") "Ah! No one won the round as it resulted in a draw" else "Hurray! $winner has won the round"
         builder.setTitle(if (!gameOver) title else "Game Over")
         builder.setMessage(message + if (gameOver) " and also the game. Kudos to them!" else ".")
         builder.setPositiveButton(if (!gameOver) "Next Round" else "GG") { _, _ ->
             clearBoard()
             if (gameOver) {
+                val lostRounds = if (winner == game.p1Name) game.p2Score.toInt() else game.p1Score.toInt()
                 this.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment(
-                    game.p1Name, game.p2Name, game.rounds, winner
+                    game.p1Name, game.p2Name, game.rounds, winner, lostRounds
                 ))
             }
         }

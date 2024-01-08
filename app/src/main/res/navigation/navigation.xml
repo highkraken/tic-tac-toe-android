@@ -55,5 +55,8 @@
         <argument
             android:name="winner"
             app:argType="string" />
+        <argument
+            android:name="lostRounds"
+            app:argType="integer" />
     </fragment>
 </navigation>

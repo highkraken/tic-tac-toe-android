@@ -45,8 +45,7 @@ class GameOverFragment : Fragment() {
             val dialog = builder.create()
             dialog.show()
         }
-        val wonRounds = args.numRounds / 2 + 1
-        binding.winnerTv.text = "Yay! ${args.winner} won the game\nwith a score of $wonRounds - ${args.numRounds - wonRounds}"
+        binding.winnerTv.text = "Yay! ${args.winner} won the game\nwith a score of ${args.numRounds} - ${args.lostRounds}"
         return binding.root
     }
 }
