@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/launchGameFragment">
+
+    <fragment
+        android:id="@+id/launchGameFragment"
+        android:name="com.example.tic_tac_toe.HomeFragment"
+        android:label="fragment_launch_game"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_launchGameFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.tic_tac_toe.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <argument
+            android:name="p1Name"
+            app:argType="string" />
+        <argument
+            android:name="p2Name"
+            app:argType="string" />
+        <argument
+            android:name="numRounds"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_gameFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.example.tic_tac_toe.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_gameOverFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/launchGameFragment" />
+        <argument
+            android:name="p1Name"
+            app:argType="string" />
+        <argument
+            android:name="p2Name"
+            app:argType="string" />
+        <argument
+            android:name="numRounds"
+            app:argType="integer" />
+        <argument
+            android:name="winner"
+            app:argType="string" />
+    </fragment>
+</navigation>
