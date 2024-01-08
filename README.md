@@ -15,7 +15,7 @@ Embark on a nostalgic journey with Tic Tac Toe, an engaging two-player local gam
 
 ## How to Play
 1. 🚀 Launch the app on your Android device.
-2. ❌ Choose your side - X or O.
+2. ❌ Enter players' names. (Player 1 gets O and Player 2 gets X)
 3. 🤝 Pass the device to your friend.
 4. 🔄 Take turns making strategic moves.
 5. 🎉 Celebrate victory or strategize for a rematch!
